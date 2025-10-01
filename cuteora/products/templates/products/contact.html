@@ -1,0 +1,66 @@
+{% extends "master.html" %}
+
+{% block title %}Contact Us - Cuteora{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4 text-center text-success fw-bold">Contact Us</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm rounded-4 p-4 border-0">
+                <h4 class="mb-3 text-center">Send Us a Message</h4>
+                
+                {% if success %}
+                    <div class="alert alert-success text-center">
+                        ✅ Thank you! Your message has been sent.
+                    </div>
+                {% endif %}
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    <!-- Name -->
+                    <div class="mb-3">
+        
+                        {{ form.name }}
+                        {% if form.name.errors %}
+                            <div class="text-danger small mt-1"> {{ form.name.errors }}  </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                     
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            <div class="text-danger small mt-1"> {{ form.email.errors }}  </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Subject -->
+                    <div class="mb-3">
+                      
+                        {{ form.subject }}
+                        {% if form.subject.errors %}
+                            <div class="text-danger small mt-1"> {{ form.subject.errors }}  </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Message -->
+                    <div class="mb-3">
+                        
+                        {{ form.message }}
+                        {% if form.message.errors %}
+                            <div class="text-danger small mt-1"> {{ form.message.errors }}  </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Submit -->
+                    <button class="btn btn-success w-100 fw-semibold">📩 Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

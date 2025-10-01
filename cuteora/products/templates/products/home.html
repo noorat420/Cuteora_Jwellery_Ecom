@@ -1,0 +1,78 @@
+{% extends "master.html" %}
+
+{% block title %}Cuteora by Aysha_Shifar{% endblock %}
+
+{% block content %}
+
+
+
+<!-- Categories Section -->
+<div class="d-flex justify-content-center align-items-center gap-3 my-5 flex-wrap">
+  {% for category in categories %}
+  <div class="card border-0 shadow-sm rounded-5 text-center bg-success-subtle" style="width: 150px;"> <!-- small card -->
+    
+    <!-- 👇 Category Image -->
+    {% if category.image_url %}
+      <img src="{{ category.image_url }}" 
+           class="card-img-top rounded-top" 
+           alt="{{ category.name }}" 
+           style="height: 100px; object-fit: cover;"> 
+    {% endif %}
+    
+    <div class="card-body p-2">
+      <h5 class="card-title fw-bold text-uppercase text-dark mb-0">
+        {{ category.name }}
+      </h5>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<!-- Hero Section -->
+<div class="container-fluid bg-success-subtle py-5 text-center">
+    <h1 class="display-4 fw-bold text-dark">Welcome to Cuteora Jewelry</h1>
+    <p class="lead">Exquisite designs, crafted with love and elegance.</p>
+    <a href="/products" class="btn btn-success btn-lg mt-3">Shop Now</a>
+</div>
+
+<!--  -->
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Featured Products</h2>
+    <div id="featuredCarousel" class="carousel slide carousel-dark" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for product in featuredproducts %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}"> 
+                <div class="d-flex justify-content-center">
+                    <div class="card text-center " style="width: 18rem;">
+                        <img src="{{ product.image_url }}" 
+                             class="card-img-top" 
+                             alt="{{ product.title }}" 
+                             style="height: 250px; object-fit: contain;">
+                        <div class="card-body">
+                            <h5 class="card-title ">{{ product.title }}</h5>
+                            <p class="card-text text-warning">${{ product.price }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-center">No featured products found.</p>
+            {% endfor %}
+        </div>
+
+        <button class="carousel-control-prev " type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+<!--  if For the first product, forloop.first is True(if that is a fetaured product), so the div becomes:
+<div class="carousel-item active"> -->

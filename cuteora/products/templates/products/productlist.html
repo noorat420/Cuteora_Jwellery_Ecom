@@ -1,0 +1,48 @@
+{% extends "master.html" %}
+
+{% block title %}Your Favourite Jewelry{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-4">Our Products</h1>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-3 col-sm-6 mb-4">  
+            <div class="card h-100 shadow-sm" style="max-width: 250px; margin: auto;"> 
+
+                <!-- 👇 Product Image -->
+                {% if product.image_url %}
+                    <img src="{{ product.image_url }}" 
+                         class="card-img-top"
+                         alt="{{ product.title }}"
+                         style="height: 150px; object-fit: cover;"> 
+                {% endif %}
+
+                <div class="card-body p-2"> 
+                    <a class="text-decoration-none" href="/products/{{ product.id }}">
+                        <h6 class="card-title text-dark mb-1">{{ product.title }}</h6> 
+                    </a>
+                    <p class="text-muted small mb-1">Category: {{ product.category.name }}</p>
+                    <p class="text-warning small mb-1">Price: ${{ product.price }}</p>
+                    <p class="small mb-1">Stock: {{ product.stock }}</p>
+                    <p class="small">{{ product.description|truncatechars:50 }}</p>
+                    {% if product.available %}
+                        <span class="badge bg-success">In Stock</span>
+                    {% else %}
+                        <span class="badge bg-danger">Out of Stock</span>
+                    {% endif %}
+                </div>
+
+                <!-- Footer with only View button -->
+                <div class="card-footer text-center p-2">
+                    <a href="/products/{{ product.id }}" class="btn btn-outline-primary btn-sm">View</a>
+                </div>
+
+            </div>
+        </div>
+        {% empty %}
+        <p>No products available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
