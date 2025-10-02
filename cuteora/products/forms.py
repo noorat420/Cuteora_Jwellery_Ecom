@@ -40,18 +40,18 @@ class ReviewForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Your Name'
             }),
-            'review': forms.Textarea(attrs={     # ✅ Textarea for longer reviews
+            'review': forms.Textarea(attrs={   
                 'class': 'form-control',
                 'placeholder': 'Write your review here...',
                 'rows': 4
             }),
-            'rating': forms.NumberInput(attrs={   # ✅ Number input with min/max
+            'rating': forms.NumberInput(attrs={  
                 'class': 'form-control',
                 'placeholder': 'Rating (1-5)',
                 'min': 1,
                 'max': 5
             }),
-            'image': forms.ClearableFileInput(attrs={   # ✅ Correct file input
+            'image': forms.ClearableFileInput(attrs={   
                 'class': 'form-control',
             }),
         }
