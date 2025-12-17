@@ -1,7 +1,7 @@
 Cuteora E-commerce (Django)
 
 Overview
-- Small Django e-commerce sample project with product listing, cart, and templates under `products/templates/products`.
+- Small Django e-commerce sample project with product listing,product detail page ,contact page,sign up,login and templates under `products/templates/products`.
 
 Prerequisites
 - Python 3.10+ (venv recommended)
